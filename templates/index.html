@@ -2,131 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Language Detector</title>
+  <title>Language Detector</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
-
     body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #4f46e5, #9333ea);
+      padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: 100vh;
     }
-
     .card {
-      background: #ffffff;
-      width: 420px;
-      padding: 35px 30px;
-      border-radius: 18px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 500px;
       text-align: center;
-      animation: fadeIn 0.6s ease;
     }
-
     h1 {
-      margin: 0;
+      margin-bottom: 10px;
       font-size: 26px;
-      color: #111827;
+      color: #333;
     }
-
-    p.subtitle {
-      margin: 8px 0 20px;
-      color: #6b7280;
+    p {
+      color: #666;
       font-size: 14px;
     }
-
     textarea {
       width: 100%;
       height: 120px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
-      font-size: 15px;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
       resize: none;
-      outline: none;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 15px;
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
       transition: 0.2s;
     }
-
-    textarea:focus {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
-    }
-
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-
     button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 15px rgba(99,102,241,0.4);
+      background: #556cd6;
     }
-
     .result {
       margin-top: 20px;
-      padding: 14px;
-      border-radius: 10px;
-      background: #eef2ff;
-      color: #3730a3;
-      font-size: 16px;
-      font-weight: 600;
-      animation: pop 0.3s ease;
+      font-size: 18px;
+      color: #333;
+      font-weight: bold;
     }
-
-    footer {
-      margin-top: 25px;
-      font-size: 12px;
-      color: #9ca3af;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.95); opacity: 0; }
-      to   { transform: scale(1); opacity: 1; }
+    .confidence {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>AI Language Detector</h1>
-    <p class="subtitle">Paste any text and detect its language instantly</p>
+<div class="card">
+  <h1>Language Detection</h1>
+  <p>Detects 170+ languages using fastText</p>
 
-    <form method="POST">
-      <textarea name="text" placeholder="Type or paste your text here..."></textarea>
-      <button type="submit">Detect Language</button>
-    </form>
+  <form method="POST">
+    <textarea name="text" placeholder="Enter text here..." required></textarea>
+    <br>
+    <button type="submit">Detect Language</button>
+  </form>
 
-    {% if prediction %}
-      <div class="result">
-        Detected Language: {{ prediction }}
-      </div>
-    {% endif %}
-
-    <footer>
-      Powered by Naive Bayes & Flask
-    </footer>
-  </div>
+  {% if prediction %}
+    <div class="result">Detected Language: {{ prediction }}</div>
+    <div class="confidence">Confidence: {{ confidence }}%</div>
+  {% endif %}
+</div>
 
 </body>
 </html>
