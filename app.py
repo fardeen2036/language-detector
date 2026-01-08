@@ -1,7 +1,21 @@
 from flask import Flask, render_template, request
 import fasttext
+import os
+import urllib.request
+
+MODEL_URL = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin"
+MODEL_PATH = "lid.176.bin"
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading fastText model...")
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    print("Download complete.")
 
 app = Flask(__name__)
+
+model = fasttext.load_model(MODEL_PATH)
+print(">>> Using fastText model <<<")
+
 
 # Load fastText model
 model = fasttext.load_model("lid.176.bin")
