@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 # Load fastText model
 model = fasttext.load_model("lid.176.bin")
+print(">>> Using fastText model <<<")
 
 LANG_MAP = {
     "af": "Afrikaans", "ar": "Arabic", "bg": "Bulgarian", "bn": "Bengali", "ca": "Catalan",
