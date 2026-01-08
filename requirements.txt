@@ -1,0 +1,6 @@
+flask
+scikit-learn
+pandas
+datasets
+fasttext-wheel
+numpy<2
