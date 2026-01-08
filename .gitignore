@@ -1,1 +1,4 @@
 lid.176.bin
+archive/
+dataset*.csv
+test_*.py
