@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: language-detector
+    env: python
+    pythonVersion: 3.11
+    buildCommand: |
+      pip install -r requirements.txt
+      curl -L -o lid.176.bin https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin
+    startCommand: python app.py
